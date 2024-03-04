@@ -1,0 +1,51 @@
+openapi: "3.0.2"
+info:
+  title: ejemploRecetas
+  version: "1.0"
+servers:
+  - url: http://localhost:8080/pruebaSwagger/api/v1
+
+tags:
+  - name: chefs
+  - name: recetas
+paths:
+  /chefs:
+    get:
+      tags:
+        - chefs
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+  /chefs/{id}:
+    get:
+      tags:
+        - chefs
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+  # /recetas:
+  #   get:
+  #     tags:
+  #       - recetas
+  #     responses:
+  #       "200":
+  #         description: OK
+  #         content:
+  #           application/json:
+  #             schema:
+  #               type: array

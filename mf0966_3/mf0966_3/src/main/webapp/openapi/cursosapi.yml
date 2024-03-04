@@ -1,0 +1,139 @@
+openapi: "3.0.2"
+info:
+  title: Ipartek(examen mf0966_3)
+  version: "1.0"
+servers:
+  - url: http://localhost:8080/mf0966_3/api
+
+tags:
+  - name: Cursos
+  - name: Reseñas
+paths:
+  /cursos:
+    get:
+      tags:
+        - Cursos
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Profesores"
+  /cursos/{codigo}:
+    get:
+      tags:
+        - Cursos
+      parameters:
+        - name: codigo
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Reseñas"
+  /resenas:
+    post:
+      tags:
+        - Reseñas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Reseñas"
+        required: true
+      responses:
+        "201":
+          description: CREATED
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Reseñas"
+  /resenas/{codigo}:
+    put:
+      tags:
+        - Reseñas
+      parameters:
+        - name: codigo
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Reseñas"
+        required: true
+      responses:
+        "200":
+          description: OK
+    delete:
+      tags:
+        - Reseñas
+      parameters:
+        - name: codigo
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "204":
+          description: NO CONTENT
+components:
+  schemas:
+    Cursos:
+      type: object
+      properties:
+        codigo:
+          type: integer
+          format: int64
+        nombre:
+          type: string
+        identificador:
+          type: string
+        nHoras:
+          type: integer
+          format: int64
+        profesor:
+          $ref: "#/components/schemas/Profesores"
+        resenas:
+          $ref: "#/components/schemas/Reseñas"
+    Profesores:
+      type: object
+      properties:
+        codigo:
+          type: integer
+          format: int64
+        nombre:
+          type: string
+        apellidos:
+          type: string
+    Reseñas:
+      type: object
+      properties:
+        codigo:
+          type: integer
+          format: int64
+        puntos:
+          type: integer
+          format: int64
+        texto:
+          type: string
+        alumno_codigo:
+          type: integer
+          format: int64
+        curso_codigo:
+          type: integer
+          format: int64
