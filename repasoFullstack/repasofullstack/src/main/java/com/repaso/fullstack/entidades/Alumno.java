@@ -5,13 +5,45 @@ import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Set;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
+
+
+@Entity
+@Table(name = "alumnos")
 public class Alumno {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	
+	@NotNull
+	@NotBlank
 	private String nombre;
+	
+	@NotNull
+	@NotBlank
 	private String apellidos;
-	private LocalDate fechaNacimineto;
+	
+	@Past
+	@Column(name = "fecha_nacimiento")
+	private LocalDate fechaNacimiento;
+	
+	@Min(0)
+	@Max(10)
 	private BigDecimal nota;
+	
+	@ManyToMany(mappedBy = "alumnos")
 	private Set<Curso> cursos;
 
 	public Alumno(long id, String nombre, String apellidos, LocalDate fechaNacimineto, BigDecimal nota,
@@ -20,7 +52,7 @@ public class Alumno {
 		this.id = id;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
-		this.fechaNacimineto = fechaNacimineto;
+		this.fechaNacimiento = fechaNacimineto;
 		this.nota = nota;
 		this.cursos = cursos;
 	}
@@ -31,12 +63,12 @@ public class Alumno {
 	@Override
 	public String toString() {
 		return "Alumno [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", fechaNacimineto="
-				+ fechaNacimineto + ", nota=" + nota + ", cursos=" + cursos + "]";
+				+ fechaNacimiento + ", nota=" + nota + ", cursos=" + cursos + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(apellidos, cursos, fechaNacimineto, id, nombre, nota);
+		return Objects.hash(apellidos, cursos, fechaNacimiento, id, nombre, nota);
 	}
 
 	@Override
@@ -49,7 +81,7 @@ public class Alumno {
 			return false;
 		Alumno other = (Alumno) obj;
 		return Objects.equals(apellidos, other.apellidos) && Objects.equals(cursos, other.cursos)
-				&& Objects.equals(fechaNacimineto, other.fechaNacimineto) && id == other.id
+				&& Objects.equals(fechaNacimiento, other.fechaNacimiento) && id == other.id
 				&& Objects.equals(nombre, other.nombre) && Objects.equals(nota, other.nota);
 	}
 
@@ -78,11 +110,11 @@ public class Alumno {
 	}
 
 	public LocalDate getFechaNacimineto() {
-		return fechaNacimineto;
+		return fechaNacimiento;
 	}
 
 	public void setFechaNacimineto(LocalDate fechaNacimineto) {
-		this.fechaNacimineto = fechaNacimineto;
+		this.fechaNacimiento = fechaNacimineto;
 	}
 
 	public BigDecimal getNota() {

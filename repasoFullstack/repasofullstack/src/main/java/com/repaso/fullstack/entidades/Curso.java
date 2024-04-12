@@ -3,10 +3,28 @@ package com.repaso.fullstack.entidades;
 import java.util.Objects;
 import java.util.Set;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
+@Entity
+@Table(name = "cursos")
 public class Curso {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	
+	@NotNull
+	@NotBlank
 	private String nombre;
+	
+	@ManyToMany
 	private Set<Alumno> alumnos;
 
 	public Curso(long id, String nombre, Set<Alumno> alumnos) {
