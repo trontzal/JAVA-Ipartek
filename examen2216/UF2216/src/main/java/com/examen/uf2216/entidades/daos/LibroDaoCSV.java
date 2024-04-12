@@ -24,7 +24,7 @@ public class LibroDaoCSV implements LibroDao<Libro> {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
-                if (data.length >= 4) { // Verificar que haya suficientes elementos
+                if (data.length >= 4) {
                     String titulo = data[0];
                     Long isbn = Long.parseLong(data[1]);
                     int nPaginas = Integer.parseInt(data[2]);
