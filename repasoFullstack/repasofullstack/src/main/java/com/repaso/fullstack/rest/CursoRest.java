@@ -10,7 +10,7 @@ import jakarta.ws.rs.Path;
 public class CursoRest {
 
 	
-	// Falta la fabrica
+	// Falta la fabrica, comprobacion de metodos
 	@GET
 	public  Iterable<CursoDto> get(){
 		return new DaoCursoJpa().obtenerTodos();
