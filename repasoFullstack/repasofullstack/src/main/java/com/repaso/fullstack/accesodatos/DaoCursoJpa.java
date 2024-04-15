@@ -15,8 +15,9 @@ public class DaoCursoJpa implements DaoCurso {
 
 	@Override
 	public CursoDto obtenerPorId(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return AccesoDatosJpa.executeInTransaction(
+				em -> em.createQuery("select c.id, c.nombre from Curso c where c.id = :id", CursoDto.class)
+						.setParameter("id", id).getSingleResult());
 	}
 
 	@Override
