@@ -1,6 +1,7 @@
 package com.repaso.fullstack.accesodatos;
 
 import com.repaso.fullstack.dto.CursoDto;
+import com.repaso.fullstack.entidades.Curso;
 
 public class DaoCursoJpa implements DaoCurso {
 
@@ -21,9 +22,12 @@ public class DaoCursoJpa implements DaoCurso {
 	}
 
 	@Override
-	public CursoDto insertar(CursoDto objeto) {
-		// TODO Auto-generated method stub
-		return null;
+	public CursoDto insertar(CursoDto curso) {
+		return AccesoDatosJpa.executeInTransaction(em -> {
+			Curso c = new Curso(null, curso.nombre(), null);
+			em.persist(c);
+			return new CursoDto(c.getId(), c.getNombre());
+		});
 	}
 
 	@Override

@@ -19,15 +19,15 @@ public class Curso {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
 	@NotNull
 	@NotBlank
 	private String nombre;
-	
+
 	@ManyToMany
 	private Set<Alumno> alumnos;
 
-	public Curso(long id, String nombre, Set<Alumno> alumnos) {
+	public Curso(long id, @NotNull @NotBlank String nombre, Set<Alumno> alumnos) {
 		super();
 		this.id = id;
 		this.nombre = nombre;

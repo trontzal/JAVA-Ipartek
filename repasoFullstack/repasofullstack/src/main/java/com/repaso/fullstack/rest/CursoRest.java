@@ -4,6 +4,7 @@ import com.repaso.fullstack.configuraciones.Globales;
 import com.repaso.fullstack.dto.CursoDto;
 
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 
@@ -21,5 +22,10 @@ public class CursoRest {
 	@Path("/{id}")
 	public CursoDto getPorId(@PathParam(value = "id") Long id) {
 		return Globales.daoCurso.obtenerPorId(id);
+	}
+	
+	@POST
+	public CursoDto post(CursoDto curso) {
+		return Globales.daoCurso.insertar(curso);
 	}
 }
