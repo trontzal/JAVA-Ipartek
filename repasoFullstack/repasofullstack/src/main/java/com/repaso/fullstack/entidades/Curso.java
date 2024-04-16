@@ -18,7 +18,7 @@ public class Curso {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 
 	@NotNull
 	@NotBlank
@@ -27,7 +27,7 @@ public class Curso {
 	@ManyToMany
 	private Set<Alumno> alumnos;
 
-	public Curso(long id, @NotNull @NotBlank String nombre, Set<Alumno> alumnos) {
+	public Curso(Long id, @NotNull @NotBlank String nombre, Set<Alumno> alumnos) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -59,11 +59,11 @@ public class Curso {
 		return "Curso [id=" + id + ", nombre=" + nombre + ", alumnos=" + alumnos + "]";
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
