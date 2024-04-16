@@ -3,6 +3,7 @@ package com.repaso.fullstack.rest;
 import com.repaso.fullstack.configuraciones.Globales;
 import com.repaso.fullstack.dto.CursoDto;
 
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -28,4 +29,11 @@ public class CursoRest {
 	public CursoDto post(CursoDto curso) {
 		return Globales.daoCurso.insertar(curso);
 	}
+	
+	@DELETE
+	@Path(value = "/{id}")
+	public void delete(@PathParam(value = "id") Long id) {
+		Globales.daoCurso.borrar(id);
+	}
+	
 }

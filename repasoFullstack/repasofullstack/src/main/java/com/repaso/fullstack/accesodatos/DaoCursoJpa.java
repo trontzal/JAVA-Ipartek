@@ -38,8 +38,7 @@ public class DaoCursoJpa implements DaoCurso {
 
 	@Override
 	public void borrar(Long id) {
-		// TODO Auto-generated method stub
-
+		AccesoDatosJpa.executeTransactionVoid(em-> em.remove(em.find(Curso.class, id)));
 	}
 
 //	@Override
