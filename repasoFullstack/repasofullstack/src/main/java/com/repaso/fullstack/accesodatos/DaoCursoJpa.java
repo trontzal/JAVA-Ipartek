@@ -48,6 +48,7 @@ public class DaoCursoJpa implements DaoCurso {
 		AccesoDatosJpa.executeTransactionVoid(em-> em.remove(em.find(Curso.class, id)));
 	}
 
+	// Forma de hacerlo sin el lambda
 //	@Override
 //	public Iterable<CursoDto> obtenerTodos() {
 //		EntityTransaction t;

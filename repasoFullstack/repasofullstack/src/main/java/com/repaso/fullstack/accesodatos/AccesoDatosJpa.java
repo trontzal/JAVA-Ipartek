@@ -13,10 +13,6 @@ public class AccesoDatosJpa {
 	private static final EntityManagerFactory emf = Persistence
 			.createEntityManagerFactory("com.repaso.fullstack.entidades");
 
-//	@FunctionalInterface
-//	public interface EntityManagerOperation<T>{
-//		T execute(EntityManager em);
-//	}
 
 	public static <T> T executeInTransaction(Function<EntityManager, T> lambda) {
 		EntityManager em = emf.createEntityManager();
