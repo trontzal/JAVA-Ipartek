@@ -13,7 +13,6 @@ import jakarta.ws.rs.PathParam;
 public class CursoRest {
 
 	
-	// Falta la fabrica, comprobacion de metodos
 	@GET
 	public  Iterable<CursoDto> get(){
 		return Globales.daoCurso.obtenerTodos();
