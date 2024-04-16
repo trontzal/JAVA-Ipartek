@@ -31,9 +31,16 @@ public class DaoCursoJpa implements DaoCurso {
 	}
 
 	@Override
-	public CursoDto modificar(CursoDto objeto) {
-		// TODO Auto-generated method stub
-		return null;
+	public CursoDto modificar(CursoDto curso) {
+		return AccesoDatosJpa.executeInTransaction(em->{
+			if(curso.id() == null) {
+				throw new AccesoDatosException("Para modificar un curso es necesario el id");
+			}else {
+				Curso c = new Curso(curso.id(), curso.nombre(), null);
+				em.merge(c);
+				return new CursoDto(c.getId(), c.getNombre());
+			}
+		});
 	}
 
 	@Override
