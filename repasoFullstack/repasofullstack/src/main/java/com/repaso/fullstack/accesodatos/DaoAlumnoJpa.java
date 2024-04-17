@@ -14,8 +14,7 @@ public class DaoAlumnoJpa extends AccesoDatosJpa implements DaoAlumno {
 
 	@Override
 	public AlumnoDto obtenerPorId(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return AccesoDatosJpa.executeInTransaction(em -> em.createQuery("select a.id, a.nombre, a.apellidos, a.fechaNacimiento from Alumno a where id = :id", AlumnoDto.class).setParameter("id", id).getSingleResult());
 	}
 
 	@Override
