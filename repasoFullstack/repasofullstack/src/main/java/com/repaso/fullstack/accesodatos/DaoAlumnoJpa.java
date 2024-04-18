@@ -24,7 +24,7 @@ public class DaoAlumnoJpa extends AccesoDatosJpa implements DaoAlumno {
 
 	@Override
 	public AlumnoDto insertar(AlumnoDto alumno) {
-		return AccesoDatosJpa.executeInTransaction(em->{
+		return AccesoDatosJpa.executeInTransaction(em -> {
 			Alumno a = new Alumno(null, alumno.nombre(), alumno.apellidos(), alumno.fechaNacimiento(), null, null);
 			em.persist(a);
 			return new AlumnoDto(a.getId(), a.getNombre(), a.getApellidos(), a.getFechaNacimiento());
@@ -45,8 +45,9 @@ public class DaoAlumnoJpa extends AccesoDatosJpa implements DaoAlumno {
 
 	@Override
 	public void apuntarseACurso(Long idAlumno, Long idCurso) {
-		// TODO Auto-generated method stub
-
+		AccesoDatosJpa.executeTransactionVoid(em ->{
+			em.createNativeQuery("INSERT INTO cursos_alumnos (cursos_id, alumnos_id) VALUES (:idCurso, :idAlumno)").setParameter("idAlumno", idAlumno).setParameter("idCurso", idCurso).executeUpdate();
+		});
 	}
 
 	@Override

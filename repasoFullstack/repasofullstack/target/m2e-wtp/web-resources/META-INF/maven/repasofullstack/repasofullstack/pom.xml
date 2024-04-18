@@ -20,27 +20,44 @@
 	</dependencyManagement>
 
 	<dependencies>
+		<!--
+		https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
 		<dependency>
-			<groupId>org.glassfish.jersey.containers</groupId>
-			<artifactId>jersey-container-servlet-core</artifactId>
-			<!-- use the following artifactId if you don't need servlet 2.x
-			compatibility -->
-			<!-- artifactId>jersey-container-servlet</artifactId -->
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+			<version>6.0.0</version>
+			<scope>provided</scope>
 		</dependency>
+
+		<!--
+		https://mvnrepository.com/artifact/org.glassfish.web/jakarta.servlet.jsp.jstl -->
 		<dependency>
-			<groupId>org.glassfish.jersey.inject</groupId>
-			<artifactId>jersey-hk2</artifactId>
+			<groupId>org.glassfish.web</groupId>
+			<artifactId>jakarta.servlet.jsp.jstl</artifactId>
+			<version>3.0.1</version>
 		</dependency>
+		<!--
+		https://mvnrepository.com/artifact/jakarta.servlet.jsp.jstl/jakarta.servlet.jsp.jstl-api -->
 		<dependency>
-			<groupId>org.glassfish.jersey.media</groupId>
-			<artifactId>jersey-media-json-binding</artifactId>
+			<groupId>jakarta.servlet.jsp.jstl</groupId>
+			<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+			<version>3.0.0</version>
 		</dependency>
+
 
 		<!-- https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core -->
 		<dependency>
 			<groupId>org.hibernate.orm</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>6.4.4.Final</version>
+		</dependency>
+
+		<!--
+		https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>8.0.1.Final</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
@@ -50,19 +67,7 @@
 			<version>8.3.0</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.webjars/swagger-ui -->
-		
-		<!-- http://localhost:8080/uf2215/webjars/swagger-ui/5.10.3/ -->
-		<!-- /uf2215/openapi/tuiter.yaml -->
-		
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>swagger-ui</artifactId>
-			<version>5.10.3</version>
-		</dependency>
-
 	</dependencies>
-	
 	<build>
 		<plugins>
 			<plugin>
