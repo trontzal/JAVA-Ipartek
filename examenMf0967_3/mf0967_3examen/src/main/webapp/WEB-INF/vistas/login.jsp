@@ -1,29 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/vistas/includes/cabecera.jsp" %>
-<main>
-	<h2>Login</h2>
-	
+<%@ include file="/WEB-INF/vistas/includes/cabecera.jsp"%>
+<main class="container mt-5 w-25">
+	<c:if test="${not empty error}">
+		<div class="alert alert-warning" role="alert">
+			<strong>Error:</strong> ${error}
+		</div>
+	</c:if>
+	<h2 class="mb-4">Login</h2>
 	<form action="login" method="post">
-		<div>
-			<label for="nombre">Nombre</label>
-			<div >
-				<input type="text" id="nombre" name="nombre">
-			</div>
+		<div class="form-group mb-2">
+			<label for="nombre">Nombre</label> <input type="text"
+				class="form-control" id="nombre" name="nombre">
 		</div>
-		<div>
-			<label for="contrasena">Contraseña</label>
-			<div>
-				<input type="password" id="contrasena" name="contrasena">
-			</div>
+		<div class="form-group mb-2">
+			<label for="contrasena">Contraseña</label> <input type="password"
+				class="form-control" id="contrasena" name="contrasena">
 		</div>
-
-		<div>
-			<div>
-				<button>Login</button>
-			</div>
-		</div>
-
+		<button type="submit" class="btn btn-primary">Login</button>
 	</form>
 </main>
-<%@ include file="/WEB-INF/vistas/includes/pie.jsp" %>
+<%@ include file="/WEB-INF/vistas/includes/pie.jsp"%>

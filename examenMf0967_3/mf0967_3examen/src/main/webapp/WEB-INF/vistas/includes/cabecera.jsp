@@ -55,7 +55,7 @@
 							<li class="nav-item"><a class="nav-link" href="logout">Log out</a></li>
 							<li class="nav-item"><a class="nav-link"
 								href="admin/libros">Administración</a></li>
-							<li class="navbar-text">${usuario}</li>
+							<li class="navbar-text">Usuario: ${usuario}</li>
 						</c:otherwise>
 					</c:choose>
 
