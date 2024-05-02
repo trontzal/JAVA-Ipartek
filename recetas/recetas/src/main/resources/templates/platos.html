@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Platos</title>
+</head>
+<body>
+	<h1>Listado de platos</h1>
+
+	<li th:each="plato: ${platos}">
+		<span th:text=${plato.nombre}>Plato</span>
+	</li>
+</body>
+</html>
