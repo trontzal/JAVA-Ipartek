@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import com.recetas.entidades.Ingrediente;
 import com.recetas.entidades.Plato;
 import com.recetas.entidades.PlatoIngrediente;
+import com.recetas.repositorios.IngredienteRepository;
+import com.recetas.repositorios.PlatoIngredienteRepository;
 import com.recetas.repositorios.PlatoRepository;
 
 
@@ -13,13 +15,24 @@ import com.recetas.repositorios.PlatoRepository;
 @Service
 public class RecetaServiceImpl implements RecetaService{
 
+
 	@Autowired
 	private PlatoRepository platoRepository;
 	
+	@Autowired
+	private IngredienteRepository ingredienteRepository;
+	
+	@Autowired
+	private PlatoIngredienteRepository platoIngredienteRepository;
+	
+	@Override
+	public Iterable<Ingrediente> listarIngredientes() {
+		return ingredienteRepository.findAll();
+	}
+	
 	@Override
 	public void anadirIngrediente(Ingrediente ingrediente) {
-		// TODO Auto-generated method stub
-		
+		ingredienteRepository.save(ingrediente);
 	}
 
 	@Override
@@ -29,8 +42,7 @@ public class RecetaServiceImpl implements RecetaService{
 
 	@Override
 	public void anadirIngredienteAPlato(PlatoIngrediente platoIngrediente) {
-		// TODO Auto-generated method stub
-		
+		platoIngredienteRepository.save(platoIngrediente);
 	}
 
 	@Override
@@ -38,10 +50,5 @@ public class RecetaServiceImpl implements RecetaService{
 		return platoRepository.findAll();
 	}
 
-	@Override
-	public Plato verPlato() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

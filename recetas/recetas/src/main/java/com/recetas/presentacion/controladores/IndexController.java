@@ -22,4 +22,10 @@ public class IndexController {
 		return "platos";
 	}
 	
+	@GetMapping("ingredientes")
+	private String listadoDePlatos(Model modelo) {
+		modelo.addAttribute("ingredientes", servicio.listarIngredientes());
+		return "ingredientes";
+	}
+	
 }

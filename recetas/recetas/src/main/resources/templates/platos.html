@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Platos</title>
 </head>
 <body>
-	<h1>Listado de platos</h1>
+	<h1>Platos</h1>
 
-	<li th:each="plato: ${platos}">
-		<span th:text=${plato.nombre}>Plato</span>
-	</li>
+	<p>
+		<a th:href="@{/plato}">Añadir plato</a>
+	</p>
+	<ul>
+		<li th:each="plato: ${platos}"><span th:text="${plato.nombre}">PLATO</span>
+			<a th:href="${'plato/' + plato.id}">Añadir ingredientes</a></li>
+	</ul>
 </body>
 </html>
