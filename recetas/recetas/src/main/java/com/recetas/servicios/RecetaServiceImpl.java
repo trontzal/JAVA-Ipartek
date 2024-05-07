@@ -3,9 +3,11 @@ package com.recetas.servicios;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.recetas.entidades.Dificultad;
 import com.recetas.entidades.Ingrediente;
 import com.recetas.entidades.Plato;
 import com.recetas.entidades.PlatoIngrediente;
+import com.recetas.entidades.TipoCocina;
 import com.recetas.entidades.Usuario;
 import com.recetas.repositorios.DificultadRepository;
 import com.recetas.repositorios.IngredienteRepository;
@@ -31,6 +33,25 @@ public class RecetaServiceImpl implements RecetaService{
 	private TipoCocinaRepository tipoCocinaRepository;
 	
 	public RecetaServiceImpl(UsuarioRepository usuarioRepository, PlatoRepository platoRepository, IngredienteRepository ingredienteRepository, DificultadRepository dificultadRepository, TipoCocinaRepository tipoCocinaRepository) {
+		dificultadRepository.save(Dificultad.builder().nombre("Baja").puntuacion(3).build());
+		dificultadRepository.save(Dificultad.builder().nombre("Media").puntuacion(5).build());
+		dificultadRepository.save(Dificultad.builder().nombre("Alta").puntuacion(7).build());
+		
+		tipoCocinaRepository.save(TipoCocina.builder().nombre("Americana").build());
+		tipoCocinaRepository.save(TipoCocina.builder().nombre("Española").build());
+		tipoCocinaRepository.save(TipoCocina.builder().nombre("Francesa").build());
+		tipoCocinaRepository.save(TipoCocina.builder().nombre("Italiana").build());
+		
+		ingredienteRepository.save(Ingrediente.builder().nombre("Patata").build());
+		ingredienteRepository.save(Ingrediente.builder().nombre("Lechuga").build());
+		ingredienteRepository.save(Ingrediente.builder().nombre("Tomate").build());
+		
+		var tipoCocina = TipoCocina.builder().id(4L).build();
+		var dificultad = Dificultad.builder().id(1L).build();
+		var plato = Plato.builder().nombre("Pizza").preparacion("Horno").dificultad(dificultad).tipoCocina(tipoCocina).build();
+
+		platoRepository.save(plato);
+		
 		usuarioRepository.save(Usuario.builder().nombre("Javier").email("javier@email.net").password("$2a$12$mof.u/4EIo58hR7On9DnPevyqBC7kb9FHzT.LN/BjF8xOqQVTP1NO").rol("ADMIN").build());
 		usuarioRepository.save(Usuario.builder().nombre("Pepe").email("pepe@email.net").password("$2a$12$Dij9cgV3mXDQYtOo4nvQTOLaUz3URoe7DGjhBrqGa1fEEzkNVhBgq").rol("USER").build());
 		
@@ -41,10 +62,20 @@ public class RecetaServiceImpl implements RecetaService{
 	}
 	
 	@Override
+	public Iterable<Dificultad> listarDificultades() {
+		return dificultadRepository.findAll();
+	}
+
+	@Override
+	public Iterable<TipoCocina> listarTiposCocina() {
+		return tipoCocinaRepository.findAll();
+	}
+
+	@Override
 	public Iterable<Ingrediente> listarIngredientes() {
 		return ingredienteRepository.findAll();
 	}
-	
+
 	@Override
 	public void anadirIngrediente(Ingrediente ingrediente) {
 		ingredienteRepository.save(ingrediente);
@@ -65,5 +96,13 @@ public class RecetaServiceImpl implements RecetaService{
 		return platoRepository.findAll();
 	}
 
+	@Override
+	public Plato verPlato(Long id) {
+		return platoRepository.findById(id).orElse(null);
+	}
 
+//	@Override
+//	public Iterable<PlatoIngrediente> verIngredientesPlato(Long id) {
+//		return platoIngredienteRepository.findByPlatoId(id);
+//	}
 }
