@@ -11,21 +11,31 @@ import com.recetas.servicios.RecetaService;
 @Controller
 @RequestMapping("/")
 public class IndexController {
-	
+
 	@Autowired
 	private RecetaService servicio;
-	
-	@GetMapping("platos")
+
+	@GetMapping({ "/", "platos" })
 	private String listadoPlatos(Model modelo) {
 		modelo.addAttribute("platos", servicio.listadoPlatos());
-		
+
 		return "platos";
 	}
-	
+
 	@GetMapping("ingredientes")
 	private String listadoDePlatos(Model modelo) {
 		modelo.addAttribute("ingredientes", servicio.listarIngredientes());
 		return "ingredientes";
 	}
-	
+
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+	}
+
+	@GetMapping("/logout")
+	public String logout() {
+		return "logout";
+	}
+
 }

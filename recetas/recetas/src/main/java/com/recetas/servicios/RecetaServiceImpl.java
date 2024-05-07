@@ -6,24 +6,39 @@ import org.springframework.stereotype.Service;
 import com.recetas.entidades.Ingrediente;
 import com.recetas.entidades.Plato;
 import com.recetas.entidades.PlatoIngrediente;
+import com.recetas.entidades.Usuario;
+import com.recetas.repositorios.DificultadRepository;
 import com.recetas.repositorios.IngredienteRepository;
 import com.recetas.repositorios.PlatoIngredienteRepository;
 import com.recetas.repositorios.PlatoRepository;
+import com.recetas.repositorios.TipoCocinaRepository;
+import com.recetas.repositorios.UsuarioRepository;
 
 
-// En el github no esta puesto lo de service
 @Service
 public class RecetaServiceImpl implements RecetaService{
 
-
-	@Autowired
-	private PlatoRepository platoRepository;
-	
-	@Autowired
-	private IngredienteRepository ingredienteRepository;
 	
 	@Autowired
 	private PlatoIngredienteRepository platoIngredienteRepository;
+	
+	private IngredienteRepository ingredienteRepository;
+	
+	private PlatoRepository platoRepository;
+	
+	private DificultadRepository dificultadRepository;
+	
+	private TipoCocinaRepository tipoCocinaRepository;
+	
+	public RecetaServiceImpl(UsuarioRepository usuarioRepository, PlatoRepository platoRepository, IngredienteRepository ingredienteRepository, DificultadRepository dificultadRepository, TipoCocinaRepository tipoCocinaRepository) {
+		usuarioRepository.save(Usuario.builder().nombre("Javier").email("javier@email.net").password("$2a$12$mof.u/4EIo58hR7On9DnPevyqBC7kb9FHzT.LN/BjF8xOqQVTP1NO").rol("ADMIN").build());
+		usuarioRepository.save(Usuario.builder().nombre("Pepe").email("pepe@email.net").password("$2a$12$Dij9cgV3mXDQYtOo4nvQTOLaUz3URoe7DGjhBrqGa1fEEzkNVhBgq").rol("USER").build());
+		
+		this.platoRepository = platoRepository;
+		this.ingredienteRepository = ingredienteRepository;
+		this.dificultadRepository = dificultadRepository;
+		this.tipoCocinaRepository = tipoCocinaRepository;
+	}
 	
 	@Override
 	public Iterable<Ingrediente> listarIngredientes() {
