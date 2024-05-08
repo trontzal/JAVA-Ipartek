@@ -101,8 +101,8 @@ public class RecetaServiceImpl implements RecetaService{
 		return platoRepository.findById(id).orElse(null);
 	}
 
-//	@Override
-//	public Iterable<PlatoIngrediente> verIngredientesPlato(Long id) {
-//		return platoIngredienteRepository.findByPlatoId(id);
-//	}
+	@Override
+	public Iterable<PlatoIngrediente> verIngredientesPlato(Long id) {
+		return platoIngredienteRepository.findByPlatoId(id);
+	}
 }

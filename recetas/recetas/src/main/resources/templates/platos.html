@@ -10,9 +10,12 @@
 	<p>
 		<a th:href="@{/plato}">Añadir plato</a>
 	</p>
-	<ul>
-		<li th:each="plato: ${platos}"><span th:text="${plato.nombre}">PLATO</span>
-			<a th:href="${'plato/' + plato.id}">Añadir ingredientes</a></li>
+	<ul th:each="plato: ${platos}">
+		<li>Nombre: <span th:text="${plato.nombre}">Nombre del plato</span></li>
+		<li>Preparacion: <span th:text="${plato.preparacion}">Preparacion</span></li>
+		<li>Dificultad: <span th:text="${plato.dificultad.nombre}">Dificultad</span></li>
+		<li>Tipo de cocina: <span th:text="${plato.tipoCocina.nombre}">Tipo</span></li>
+		<a th:href="${'plato/' + plato.id}"><span>Añadir ingredientes</span></a>
 	</ul>
 </body>
 </html>
