@@ -20,7 +20,7 @@ public class IndexController {
 
 	@GetMapping({ "/", "libros" })
 	private String listadoLibros(Model modelo) {
-		modelo.addAttribute("libros", libroService.listadoLibros());
+		modelo.addAttribute("libros", libroService.todos());
 		return "index";
 	}
 

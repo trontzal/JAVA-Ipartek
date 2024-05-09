@@ -36,6 +36,11 @@ public class LibroServiceImpl implements LibroService {
 	public Iterable<Libro> buscarPorNombre(String nombre) {
 		return libroRepository.findByNombreContainingIgnoreCase(nombre);
 	}
+
+	@Override
+	public Iterable<Libro> todos() {
+		return libroRepository.todos();
+	}
 	
 	
 

@@ -28,10 +28,11 @@
 				<div class="d-flex flex-column">
 					<form class="d-flex mb-2" action="/buscarLibroPorIsbn" method="get">
 						<label for="isbn" class="visually-hidden">Buscar libro por
-							ISBN:</label> <input type="number" id="isbn" name="isbn"
-							class="form-control me-2" placeholder="Buscar libro por ISBN" />
+							ISBN:</label> <input type="text" pattern="\d{13}" id="isbn" name="isbn"
+							class="form-control me-2" placeholder="Buscar libro por ISBN" title="Deben de ser 13 numeros"/>
 						<button class="btn btn-outline-light" type="submit">Buscar</button>
 					</form>
+
 
 					<form class="d-flex" action="/buscarLibroPorNombre" method="get">
 						<label for="nombre" class="visually-hidden">Buscar libro

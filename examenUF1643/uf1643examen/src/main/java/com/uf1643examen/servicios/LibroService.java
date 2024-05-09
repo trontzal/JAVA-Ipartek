@@ -22,4 +22,8 @@ public interface LibroService {
 	default Iterable<Libro> buscarPorNombre(String nombre) {
 		throw new UnsupportedOperationException("NO IMPLEMENTADO");
 	}
+	
+	default Iterable<Libro> todos() {
+		throw new UnsupportedOperationException("NO IMPLEMENTADO");
+	}
 }

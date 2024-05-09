@@ -10,6 +10,12 @@
 		Detalle del libro: <span th:text="${libro.nombre}"></span>
 	</h2>
 
+	<div th:if="${error != null}">
+		<p>
+			Error: <span th:text="${error}"></span>
+		</p>
+	</div>	
+
 	<div class="card">
 		<div class="row no-gutters">
 			<div class="col-md-4">
