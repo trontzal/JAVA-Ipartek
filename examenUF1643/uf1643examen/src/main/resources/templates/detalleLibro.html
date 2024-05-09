@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html th:replace="~{_global :: plantilla(~{::title}, ~{::main})}"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title th:text="${libro.nombre}"></title>
+</head>
+<main class="container mt-4">
+	<h2 class="mb-4">
+		Detalle del libro: <span th:text="${libro.nombre}"></span>
+	</h2>
+
+	<div class="card">
+		<div class="row no-gutters">
+			<div class="col-md-4">
+				<img th:src="'https://picsum.photos/200/300?random=' + ${libro.id}"
+					class="card-img img-fluid" alt="Imagen de libro">
+			</div>
+			<div class="col-md-8">
+				<div class="card-body">
+					<h5 class="card-title">
+						<strong>Nombre:</strong> <span th:text="${libro.nombre}"></span>
+					</h5>
+					<p class="card-text">
+						<strong>Precio:</strong> <span th:text="${libro.precio}"></span>
+					</p>
+					<p class="card-text">
+						<strong>Autor:</strong> <span th:text="${libro.autor.nombre}"></span>
+					</p>
+					<p class="card-text">
+						<strong>ISBN:</strong> <span th:text="${libro.isbn}"></span>
+					</p>
+
+					<p>
+						<a class="btn btn-primary">Comprar libro</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</main>
+
+
+</html>

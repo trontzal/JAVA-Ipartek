@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html th:fragment="plantilla(titulo, contenido)"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+<base th:href="@{/}">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/bootstrap-icons.min.css">
+<title th:replace="${titulo}">TITULO</title>
+</head>
+<body>
+	<nav
+		class="navbar navbar-expand-md navbar-dark bg-info border-bottom border-body mb-3">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">Libros</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-md-0">
+					<li class="nav-item"><a class="nav-link" href="#">Listado</a></li>
+				</ul>
+				<div class="d-flex flex-column">
+					<form class="d-flex mb-2" action="/buscarLibroPorIsbn" method="get">
+						<label for="isbn" class="visually-hidden">Buscar libro por
+							ISBN:</label> <input type="number" id="isbn" name="isbn"
+							class="form-control me-2" placeholder="Buscar libro por ISBN" />
+						<button class="btn btn-outline-light" type="submit">Buscar</button>
+					</form>
+
+					<form class="d-flex" action="/buscarLibroPorNombre" method="get">
+						<label for="nombre" class="visually-hidden">Buscar libro
+							por Nombre:</label> <input type="text" id="nombre" name="nombre"
+							class="form-control me-2" placeholder="Buscar libro por Nombre" />
+						<button class="btn btn-outline-light" type="submit">Buscar</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+
+	<div th:replace="${contenido}">CONTENIDO</div>
+	<footer>
+		<p>&copy;2024 Gonzalo Lecumberri</p>
+	</footer>
+</body>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html th:replace="~{_global :: plantilla(~{::title}, ~{::main})}"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resultado de la búsqueda por nombre</title>
+</head>
+<main>
+	<h2>Resultado de la búsqueda</h2>
+
+	<div th:if="${libros != null and libros.size() > 0}">
+		<div class="containerCards d-flex flex-wrap justify-content-around gap-3">
+        <th:block th:each="libro : ${libros}">
+            <div class="card" style="width: 15rem;">
+                <div class="card">
+                    <img th:src="'https://picsum.photos/200/300?random=' + ${libro.id}" class="card-img-top img-fluid" alt="Imagen de libro">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${libro.nombre}">Nombre del libro</h5>
+                        <ul class="list-unstyled">
+                            <li>Precio: <span th:text="${libro.precio}"></span></li>
+                            <li>Autor: <span th:text="${libro.autor.nombre}"></span></li>
+                            <li>ISBN: <span th:text="${libro.isbn}"></span></li>
+                        </ul>
+                        <a th:href="@{'/libro/' + ${libro.id}}" class="btn btn-primary">Ver detalles</a>
+                    </div>
+                </div>
+            </div>
+        </th:block>
+    </div>
+	</div>
+	<div th:if="${libros == null or libros.size() == 0}">
+		<p>No se encontró ningún libro con el Nombre especificado.</p>
+	</div>
+
+</main>
+</html>
